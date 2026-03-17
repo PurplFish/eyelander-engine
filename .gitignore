@@ -1,0 +1,30 @@
+# Build output
+build/
+out/
+
+# VSCode - keep tasks.json, launch.json, c_cpp_properties.json
+# but ignore local-only settings
+.vscode/settings.json
+.vscode/ipch/
+
+# Compiled binaries
+*.exe
+*.out
+*.app
+*.o
+*.a
+*.lib
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+install_manifest.txt
+CPackConfig.cmake
+CPackSourceConfig.cmake
+
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini
