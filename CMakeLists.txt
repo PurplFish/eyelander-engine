@@ -14,6 +14,10 @@ add_subdirectory(libs/SDL2)
 # --- Your game ---
 add_executable(eyelander_engine src/main.c)
 
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    target_compile_definitions(EyeEngine PRIVATE EYE_LOG_LEVEL=2)
+endif()
+
 target_include_directories(eyelander_engine PRIVATE libs/SDL2/include)
 
 target_link_libraries(eyelander_engine PRIVATE SDL2-static SDL2main)

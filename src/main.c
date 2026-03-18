@@ -1,7 +1,10 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 
+#include "core/log.h"
+
 int main(int argc, char* argv[]) {
+    LOG_INFO("Engine starting");
     // Init SDL - only what you need
     SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "0");
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
