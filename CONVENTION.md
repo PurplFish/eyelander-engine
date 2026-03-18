@@ -15,4 +15,6 @@
 
 ## Rules
 - Engine code never includes SDL headers directly — always go through the HAL
-- No raw `new`/`delete` — use smart pointers
+- src/platform/ headers are public contracts.
+- src/platform/sdl/ has no headers unless the implementation needs to talk to itself.
+- No raw `new`/`delete`

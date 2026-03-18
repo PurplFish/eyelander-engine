@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
-project(MyGame)
+project(eyelander_engine)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # --- Build SDL2 from source ---
 set(SDL_STATIC ON  CACHE BOOL "" FORCE)   # build static lib
@@ -11,8 +12,8 @@ set(SDL_TEST   OFF CACHE BOOL "" FORCE)   # skip SDL tests
 add_subdirectory(libs/SDL2)
 
 # --- Your game ---
-add_executable(MyGame src/main.cpp)
+add_executable(eyelander_engine src/main.c)
 
-target_include_directories(MyGame PRIVATE libs/SDL2/include)
+target_include_directories(eyelander_engine PRIVATE libs/SDL2/include)
 
-target_link_libraries(MyGame PRIVATE SDL2-static SDL2main)
+target_link_libraries(eyelander_engine PRIVATE SDL2-static SDL2main)
