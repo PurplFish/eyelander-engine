@@ -11,8 +11,9 @@ set(SDL_TEST   OFF CACHE BOOL "" FORCE)   # skip SDL tests
 
 add_subdirectory(libs/SDL2)
 
-# --- Your game ---
-add_executable(eyelander_engine src/main.c)
+
+file(GLOB_RECURSE ENGINE_SOURCES "src/*.c")
+add_executable(eyelander_engine ${ENGINE_SOURCES})
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     target_compile_definitions(EyeEngine PRIVATE EYE_LOG_LEVEL=2)
