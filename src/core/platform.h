@@ -17,3 +17,9 @@
 #else
     #error "Unknown platform"
 #endif
+
+int platform_init(void);
+void platform_render_begin(void);
+void platform_render_end(void);
+int platform_shutdown_signal(void);
+void platform_shutdown(void);
