@@ -9,7 +9,6 @@ static SDL_Window* s_window = NULL;
 static SDL_Renderer* s_renderer = NULL;
 
 int platform_init(void){
-    LOG_INFO("Engine starting");
     // Init SDL - to move to Interface
     SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "0");
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {

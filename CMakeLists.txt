@@ -8,15 +8,28 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(SDL_STATIC ON  CACHE BOOL "" FORCE)   # build static lib
 set(SDL_SHARED OFF CACHE BOOL "" FORCE)   # no DLL/SO
 set(SDL_TEST   OFF CACHE BOOL "" FORCE)   # skip SDL tests
-
 add_subdirectory(libs/SDL2)
 
+# --- Build Lua from source ---
+file(GLOB LUA_SOURCES "libs/lua/*.c")
+list(FILTER LUA_SOURCES EXCLUDE REGEX ".*(lua|luac)\\.c$")  # strip standalone entry points
 
+add_library(lua STATIC ${LUA_SOURCES})
+target_include_directories(lua PUBLIC libs/lua)
+
+if(WIN32)
+    target_compile_definitions(lua PRIVATE LUA_USE_WINDOWS)
+elseif(UNIX)
+    target_compile_definitions(lua PRIVATE LUA_USE_POSIX)
+    target_link_libraries(lua PRIVATE m)  # Lua needs libm on Linux
+endif()
+
+# --- Engine ---
 file(GLOB_RECURSE ENGINE_SOURCES "src/*.c")
 add_executable(eyelander_engine ${ENGINE_SOURCES})
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    target_compile_definitions(EyeEngine PRIVATE EYE_LOG_LEVEL=2)
+    target_compile_definitions(eyelander_engine PRIVATE EYE_LOG_LEVEL=2)
 endif()
 
 target_include_directories(eyelander_engine PRIVATE libs/SDL2/include)

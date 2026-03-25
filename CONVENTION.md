@@ -16,5 +16,5 @@
 ## Rules
 - Engine code never includes SDL headers directly — always go through the HAL
 - src/platform/ headers are public contracts.
-- src/platform/sdl/ has no headers unless the implementation needs to talk to itself.
+- src/platform/platform_*** has no headers unless the implementation needs to talk to itself.
 - No raw `new`/`delete`
