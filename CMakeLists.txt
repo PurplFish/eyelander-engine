@@ -32,6 +32,20 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     target_compile_definitions(eyelander_engine PRIVATE EYE_LOG_LEVEL=2)
 endif()
 
-target_include_directories(eyelander_engine PRIVATE libs/SDL2/include)
 
-target_link_libraries(eyelander_engine PRIVATE SDL2-static SDL2main)
+# TEMPORARY WORKAROUND BECAUSE NO VFS, TO REMOVE LATER
+target_compile_definitions(eyelander_engine PRIVATE
+    EYE_SCRIPTS_PATH="${CMAKE_SOURCE_DIR}/"
+)
+
+
+target_include_directories(eyelander_engine PRIVATE 
+    libs/SDL2/include
+    libs/lua
+)
+
+target_link_libraries(eyelander_engine PRIVATE 
+    SDL2-static 
+    SDL2main
+    lua
+)
